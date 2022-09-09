@@ -14,6 +14,11 @@ const usersRouter = require("./controllers/users");
 const notesRouter = require("./controllers/notes");
 const res = require("express/lib/response");
 
+app.use(cors());
+app.use(express.json());
+app.use("/api/users", usersRouter);
+app.use("/api/notes", auth, notesRouter);
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/build")));
 
@@ -24,10 +29,6 @@ if (process.env.NODE_ENV === "production") {
   );
 }
 
-app.use(cors());
-app.use(express.json());
-app.use("/api/users", usersRouter);
-app.use("/api/notes", auth, notesRouter);
 app.use(errorHandler);
 
 module.exports = app;
