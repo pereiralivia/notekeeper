@@ -19,10 +19,12 @@ li {
   list-style: none;
 }
 
-input, select, textarea, button {
+input,
+select,
+textarea,
+button {
   font-size: 16px !important;
 }
-
 
 .nav-container {
   position: fixed;
@@ -65,6 +67,10 @@ input, select, textarea, button {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+}
+
+.inactive-link {
+  color: #9ca3af;
 }
 
 .nav-right-links a:last-child {
@@ -128,9 +134,7 @@ input, select, textarea, button {
 .login-inner-container {
   width: 100%;
   max-width: 400px;
-
 }
-
 
 .form-title {
   text-align: center;
@@ -174,7 +178,17 @@ input, select, textarea, button {
   font-size: 0.75rem;
 }
 
-.error-message{ 
+.toggle-password-visibility {
+  display: flex;
+  margin-top: 10px;
+}
+
+.toggle-password-visibility input {
+  width: auto;
+  margin-right: 5px;
+}
+
+.error-message {
   text-align: center;
   color: #dc2626;
 }
@@ -364,7 +378,7 @@ input, select, textarea, button {
   background-color: #fafafa;
 }
 
-@media screen and (min-width: 600px){
+@media screen and (min-width: 600px) {
   .create-note-button {
     display: block;
     border: none;
@@ -373,7 +387,6 @@ input, select, textarea, button {
     padding: 5px 15px;
     font-size: 1rem;
     margin-right: 30px;
-    
   }
 
   .create-note-icon {
@@ -381,9 +394,9 @@ input, select, textarea, button {
   }
 
   .login-container {
-      align-items: center;
+    align-items: center;
   }
-  
+
   .login-inner-container {
     min-width: 300px;
     padding: 40px 20px;
@@ -393,7 +406,7 @@ input, select, textarea, button {
 
   .register-container {
     align-items: center;
-}
+  }
 
   .register-inner-container {
     min-width: 300px;
@@ -401,5 +414,4 @@ input, select, textarea, button {
     border-radius: 8px;
     background-color: #fafafa;
   }
-
 }

@@ -6,13 +6,18 @@ const usersRouter = require("express").Router();
 
 usersRouter.post("/register", async (request, response) => {
   
-  const { email, password } = request.body;
+  const { email, password, repeatPassword } = request.body;
 
   const existingUser = await User.findOne({ email });
 
   if (existingUser) {
     response.status(400);
     throw new Error("Sorry, this email is already registered");
+  }
+
+  if(password !== repeatPassword){
+    response.status(400);
+    throw new Error("Passwords do not match")
   }
 
   const hashedPassword = await hashPassword(password, 10);

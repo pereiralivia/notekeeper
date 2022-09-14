@@ -13,6 +13,7 @@ const Header = () => {
   const token = localStorage.getItem("token");
 
   const isNotePath = location.pathname.includes("/notes");
+  const isRegister = location.pathname.includes("/register");
 
   const handleClick = () => {
     localStorage.removeItem("token");
@@ -56,7 +57,7 @@ const Header = () => {
           </div>
         ) : (
           <div className="nav-right-links">
-            <Link to="/login">Login</Link>
+            <Link to="/login" className={isRegister ? "inactive-link" : ""}>Login</Link>
             <Link className="sign-up-button" to="/register">
               Sign up
             </Link>

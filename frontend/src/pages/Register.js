@@ -11,6 +11,8 @@ const Register = () => {
     repeatPassword: "",
   });
 
+  const [passwordType, setPasswordType] = useState("password");
+
   const { email, password, repeatPassword } = userCredentials;
 
   const [registerUser, { data, isLoading, isError, error }] =
@@ -39,8 +41,15 @@ const Register = () => {
     await registerUser({
       email,
       password,
+      repeatPassword,
     });
   };
+
+  const handleClickPasswordVisibility = () => {
+    passwordType === "password"
+      ? setPasswordType("text")
+      : setPasswordType("password");
+  }
 
   return (
     <div className="register-container">
@@ -64,7 +73,7 @@ const Register = () => {
             <label>Password</label>
             <input
               name="password"
-              type="text"
+              type={passwordType}
               required
               value={password}
               onChange={handleChange}
@@ -74,12 +83,18 @@ const Register = () => {
             <label>Repeat password</label>
             <input
               name="repeatPassword"
-              type="text"
+              type={passwordType}
               required
               value={repeatPassword}
               onChange={handleChange}
             />
           </div>
+
+          <div className="toggle-password-visibility">
+            <input type="checkbox" onClick={handleClickPasswordVisibility}/>
+            <p>Show password</p>
+          </div>
+
           <div className="form-item">
             <button type="submit">Sign up</button>
           </div>
