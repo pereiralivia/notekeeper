@@ -103,15 +103,12 @@ li {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 60px;
+  padding: 0 40px;
 }
 
 .register-inner-container {
-  width: 0vw;
-  min-width: 300px;
-  padding: 40px 20px;
-  border-radius: 8px;
-  background-color: #fafafa;
+  width: 100%;
+  max-width: 400px;
 }
 
 .login-container {
@@ -120,17 +117,15 @@ li {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  padding: 0 60px;
+  padding: 0 40px;
 }
 
 .login-inner-container {
-  width: 0vw;
-  min-width: 300px;
-  padding: 40px 20px;
-  border-radius: 8px;
-  background-color: #fafafa;
+  width: 100%;
+  max-width: 400px;
+
 }
+
 
 .form-title {
   text-align: center;
@@ -153,7 +148,7 @@ li {
 
 .form-item input {
   width: 100%;
-  padding: 0.25rem 1rem;
+  padding: 8px 15px;
   border: none;
   border-radius: 6px;
   background-color: #e5e7eb;
@@ -239,15 +234,22 @@ li {
 
 .note-text {
   font-size: 0.8rem;
-  color: #a1a1aa;
+  color: #71717a;
 }
 
 .note-date {
   padding-right: 0.5rem;
 }
 
+.note-main-container {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
 .note-container {
   width: 100vw;
+  max-width: 600px;
   height: 100vh;
   margin: 20px 0px;
   padding: 0 1rem;
@@ -371,5 +373,54 @@ li {
   .create-note-icon {
     display: none;
   }
+
+  .login-container {
+      align-items: center;
+  }
   
+  .login-inner-container {
+    min-width: 300px;
+    padding: 40px 20px;
+    border-radius: 8px;
+    background-color: #fafafa;
+  }
+
+  .register-container {
+    align-items: center;
 }
+
+  .register-inner-container {
+    min-width: 300px;
+    padding: 40px 20px;
+    border-radius: 8px;
+    background-color: #fafafa;
+  }
+
+}
+/* 
+
+@media screen and (min-width: 500px){
+
+  .login-container {
+      align-items: center;
+  }
+  
+  .login-inner-container {
+    min-width: 300px;
+    padding: 40px 20px;
+    border-radius: 8px;
+    background-color: #fafafa;
+  }
+
+  .register-container {
+    align-items: center;
+}
+
+  .register-inner-container {
+    min-width: 300px;
+    padding: 40px 20px;
+    border-radius: 8px;
+    background-color: #fafafa;
+  }
+
+} */

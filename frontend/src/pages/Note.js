@@ -58,24 +58,26 @@ const Note = () => {
   }
 
   return (
-    <div className="note-container">
-      <button onClick={handleClick}>
-        <FaArrowLeft /> Back
-      </button>
-      <textarea
-        className="note-title"
-        name="title"
-        value={noteText.title}
-        placeholder="Untitled"
-        onChange={handleChange}
-      ></textarea>
-      <textarea
-        className="note-content"
-        name="content"
-        autoFocus
-        value={noteText.content}
-        onChange={handleChange}
-      ></textarea>
+    <div className="note-main-container">
+      <div className="note-container">
+        <button onClick={handleClick}>
+          <FaArrowLeft /> Back
+        </button>
+        <textarea
+          className="note-title"
+          name="title"
+          value={noteText.title}
+          placeholder="Untitled"
+          onChange={handleChange}
+        ></textarea>
+        <textarea
+          className="note-content"
+          name="content"
+          autoFocus
+          value={noteText.content}
+          onChange={handleChange}
+        ></textarea>
+      </div>
     </div>
   );
 };
