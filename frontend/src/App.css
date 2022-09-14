@@ -4,7 +4,10 @@
   margin: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-  background-color: #fafafa;
+}
+
+body {
+  background-color: #f4f4f5;
 }
 
 a {
@@ -12,53 +15,44 @@ a {
   color: black;
 }
 
+li {
+  list-style: none;
+}
+
 .nav-container {
   position: fixed;
   top: 0;
   width: 100vw;
-  padding: 20px;
-  height: 10vh;
+  min-width: 320px;
+  height: 7vh;
   display: flex;
-  flex-direction: row;
-  align-items: center;
   justify-content: space-between;
-  background-color: #fafafa;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  align-items: center;
+  border-bottom: 1px solid #e7e5e4;
+  font-size: 12px;
+  background-color: #f5f5f4;
 }
 
 .nav-left {
+  font-size: 1rem;
+  padding-left: 20px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  font-weight: 600;
 }
 
-.nav-left a {
-  font-size: 1em;
-  font-weight: 500;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.nav-left a svg {
-  margin-right: 10px;
-  color: #06b6d4;
+.nav-left svg {
+  font-size: 1rem;
+  color: #eab308;
+  margin-right: 5px;
+  border-bottom: 1px solid #eab308;
 }
 
 .nav-right {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-}
-
-.nav-right .logout-button {
-  border: none;
-  font-size: 16px;
-    padding: 10px 20px;
-  border-radius: 10px;
-  background-color: #06b6d4;
-  color: #fafafa;
 }
 
 .nav-right-links {
@@ -68,149 +62,314 @@ a {
   justify-content: space-around;
 }
 
+.nav-right-links a:last-child {
+  background-color: #eab308;
+  padding: 5px 10px;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
 .nav-right-links a {
+  margin-right: 20px;
   font-size: 1rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding-right: 15px;
 }
 
-.nav-right-links .sign-up-button {
-  padding: 10px 20px;
+.logout-button {
+  margin-right: 20px;
+  font-size: 1rem;
+  border: none;
   border-radius: 10px;
-  background-color: #06b6d4;
-  color: #fafafa;
+  background-color: #f5f5f4;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
-.main-container {
+.logout-button svg {
+  margin-right: 5px;
+  font-size: 16px;
+  color: #eab308;
+}
+
+.register-container {
   width: 100vw;
   height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 60px;
+}
+
+.register-inner-container {
+  width: 0vw;
+  min-width: 300px;
+  padding: 40px 20px;
+  border-radius: 8px;
+  background-color: #fafafa;
 }
 
 .login-container {
-  width: 320px;
-  height: fit-content;
-  padding: 30px 30px;
-  border-radius: 10px;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  border: 1px solid #d1d5db;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  padding: 0 60px;
 }
 
-.form-container {
-  width: 100%;
-  margin-top: 20px;
+.login-inner-container {
+  width: 0vw;
+  min-width: 300px;
+  padding: 40px 20px;
+  border-radius: 8px;
+  background-color: #fafafa;
 }
 
 .form-title {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align: center;
 }
 
 .form-title p {
   font-size: 14px;
-  text-align: center;
 }
 
 .form-item {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  margin-bottom: 10px;
+  margin-top: 1rem;
 }
 
 .form-item label {
-  font-size: small;
+  font-size: 12px;
   font-weight: 500;
 }
 
 .form-item input {
-  outline: 2px solid transparent;
-  border-radius: 0.375rem;
-  border: 1px solid rgb(209 213 219);
   width: 100%;
-  height: 2.5rem;
-  padding: 0 10px;
+  padding: 0.25rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #e5e7eb;
 }
 
 .form-item button {
-  margin-top: 10px;
   border: none;
-  border-radius: 0.375rem;
-  height: 2.5rem;
-  background-color: #06b6d4;
-  color: #fafafa;
+  border-radius: 6px;
+  padding: 8px 15px;
+  background-color: #eab308;
 }
 
 .form-bottom {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  font-size: 0.75rem;
+}
+
+.error-message{ 
   text-align: center;
-  padding-top: 10px;
+  color: #dc2626;
+}
+
+.dashboard-container {
+  display: flex;
+  justify-content: center;
+}
+
+.dashboard-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .notes-container {
-  width: 50%;
-  height: 80vh;
-  min-width: 350px;
-  padding: 30px 30px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 100vw;
+  max-width: 600px;
+  margin: 66.7px 0;
+  padding: 0 1.5rem;
+  height: fit-content;
+  align-self: flex-start;
+  justify-self: flex-start;
+  background-color: #f4f4f5;
 }
 
-.note-input {
+.notes-container input {
   width: 100%;
-  max-width: 400px;
-  height: 4rem !important;
-  padding: 0 20px;
-  align-self: center;
+  margin-bottom: 1.25rem;
+  padding: 0.25rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #e5e7eb;
 }
 
 .notes-list {
-  width: 100%;
-  max-width: 400px;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.notes-list-item {
-  list-style-type: none;
-  border-radius: 10px;
-  border: 1px solid #06b6d4;
-  padding: 20px;
-  margin: 10px 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.note-list-item-date {
-  font-size: 8px;
-  color: darkgrey;
-}
-
-.notes-list-item button {
-  border: none;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #06b6d4;
+  min-width: 20vw;
+  padding: 0 1rem;
+  border-radius: 8px;
   background-color: #fafafa;
 }
 
-.error-message {
-  color: #ef4444;
+.list-item-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e5e7eb;
 }
 
+.list-item-group button {
+  background-color: #fafafa;
+  border: none;
+}
+
+.notes-list-item {
+  width: 100%;
+  padding: 1rem;
+}
+
+.note-title {
+  font-weight: 500;
+}
+
+.note-text {
+  font-size: 0.8rem;
+  color: #a1a1aa;
+}
+
+.note-date {
+  padding-right: 0.5rem;
+}
+
+.note-container {
+  width: 100vw;
+  height: 100vh;
+  margin: 20px 0px;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  background-color: #f4f4f5;
+}
+
+.note-container button {
+  font-size: 1rem;
+  font-weight: 200;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #eab308;
+  margin-bottom: 10px;
+  border: none;
+  background-color: #f4f4f5;
+  padding: 0;
+}
+
+.note-container button svg {
+  font-size: 1rem;
+  margin-left: 20px;
+  color: #eab308;
+  padding-right: 5px;
+}
+
+.note-container .note-title {
+  border: none;
+  background-color: #f4f4f5;
+  font-size: 1.25rem;
+  margin-top: 10px;
+  outline: none;
+  padding: 0 24px;
+}
+
+.note-title::placeholder {
+  color: #d4d4d4;
+  font-size: 1rem;
+}
+
+.note-container .note-content {
+  height: 100%;
+  border: none;
+  background-color: #f4f4f5;
+  font-size: 1rem;
+  outline: none;
+  padding: 0 24px;
+}
+
+.note-content::placeholder {
+  color: #d4d4d4;
+  font-size: 1rem;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  min-width: 320px;
+  height: 7vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #e7e5e4;
+  font-size: 12px;
+  background-color: #f5f5f4;
+}
+
+.footer p {
+  font-size: 0.75rem;
+  position: relative;
+}
+
+.footer button {
+  position: fixed;
+  bottom: 7px;
+  right: 3px;
+  margin-right: 20px;
+  border: none;
+  background-color: #f5f5f4;
+}
+
+.create-note-button {
+  display: none;
+}
+
+.create-note-icon {
+  margin-right: 10px;
+  font-size: 22px;
+  color: #eab308;
+}
+
+.loading {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  right: 50vh;
+  width: 250px;
+  height: 250px;
+  background-color: #fafafa;
+}
+
+@media screen and (min-width: 600px){
+  .create-note-button {
+    display: block;
+    border: none;
+    border-radius: 8px;
+    background-color: #eab308;
+    padding: 5px 15px;
+    font-size: 1rem;
+    margin-right: 30px;
+    
+  }
+
+  .create-note-icon {
+    display: none;
+  }
+  
+}

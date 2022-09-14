@@ -4,17 +4,18 @@ import Header from "./components/Header";
 import Dashboard from "./pages/Dashboard";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-// import { ReactComponent as Logo } from "./assets/logo.svg";
+import Note from "./pages/Note";
 
-function App() {
+const App = () => {
   return (
-    <div className="main-container">
+    <div>
       <Router>
-        <Header />
+        <Header /> 
         <Routes>
           <Route path="/" element={<Dashboard />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/notes/:id" element={<Note />}></Route>
         </Routes>
       </Router>
     </div>

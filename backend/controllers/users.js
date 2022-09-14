@@ -24,6 +24,10 @@ usersRouter.post("/register", async (request, response) => {
 
   const newUser = await User.create(newUserCredentials);
 
+  if(!newUser) {
+    throw new Error('Ops! Something went wrong, please try to sign up again.')
+  }
+
   response.status(201).json({
     token: generateToken(newUser._id),
   });
@@ -36,14 +40,14 @@ usersRouter.post('/login', async (request, response) => {
 
   if(!existingUser){
     response.status(400)
-    throw new Error ('Invalid user')
+    throw new Error ('Invalid email. Please check your credentials or create a new account.')
   }
 
   const passwordMatch = await bcrypt.compare(password, existingUser.password)
 
   if(!passwordMatch){
     response.status(400)
-    throw new Error('Invalid password')
+    throw new Error('Invalid password. Please check your credentials or create a new account.')
   }
 
   const token = generateToken(existingUser._id)

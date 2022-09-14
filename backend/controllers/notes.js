@@ -10,6 +10,12 @@ notesRouter.get("/", async (request, response) => {
   response.status(200).json(notes);
 });
 
+notesRouter.get("/:id", async (request, response) => {
+  const note = await Note.findById(request.params.id)
+
+  response.status(200).json(note);
+});
+
 notesRouter.post("/", async (request, response) => {
   const noteToCreate = {
     text: request.body.text,
@@ -20,6 +26,15 @@ notesRouter.post("/", async (request, response) => {
   const newNote = await Note.create(noteToCreate);
 
   response.status(201).json(newNote);
+});
+
+notesRouter.patch("/:id", async (request, response) => {
+  const noteToUpdate = {
+    text: request.body.text,
+  }
+  const updatedNote = await Note.findByIdAndUpdate(request.params.id, noteToUpdate, {new: true});
+
+  response.status(201).json(updatedNote);
 });
 
 notesRouter.delete("/:id", async (request, response) => {

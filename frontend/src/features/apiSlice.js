@@ -3,9 +3,10 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://notesapplivia.herokuapp.com/",
+    // baseUrl: "https://notesapplivia.herokuapp.com/",
+    baseUrl: "http://localhost:3001/",
   }),
-  tagTypes: ["Notes"],
+  tagTypes: ["Notes", "Note"],
   endpoints: (builder) => ({
     loginUser: builder.mutation({
       query: (userCredentials) => ({
@@ -13,6 +14,7 @@ export const apiSlice = createApi({
         method: "POST",
         body: userCredentials,
       }),
+      invalidatesTags: ["Notes"],
     }),
     registerUser: builder.mutation({
       query: (userCredentials) => ({
@@ -20,6 +22,7 @@ export const apiSlice = createApi({
         method: "POST",
         body: userCredentials,
       }),
+      invalidatesTags: ["Notes"],
     }),
     fetchNotes: builder.query({
       query: () => ({
@@ -29,13 +32,17 @@ export const apiSlice = createApi({
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }),
-      providesTags: (result) =>
-        result
-          ? [
-              ...result.map(({ id }) => ({ type: "Posts", id })),
-              { type: "Posts", id: "LIST" },
-            ]
-          : [{ type: "Posts", id: "LIST" }],
+      providesTags: ["Notes"]
+    }),
+    fetchNote: builder.query({
+      query: (id) => ({
+        url: `api/notes/${id}`,
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }),
+      providesTags: ["Note"]
     }),
     createNote: builder.mutation({
       query: (note) => ({
@@ -46,7 +53,18 @@ export const apiSlice = createApi({
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }),
-      invalidatesTags: [{ type: "Posts", id: "LIST" }],
+      invalidatesTags: ["Notes"],
+    }),
+    updateNote: builder.mutation({
+      query: (note) => ({
+        url: `/api/notes/${note.id}`,
+        method: "PATCH",
+        body: note.updatedText,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }),
+      invalidatesTags: ["Notes", "Note"],
     }),
     deleteNote: builder.mutation({
       query: (id) => ({
@@ -56,7 +74,7 @@ export const apiSlice = createApi({
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }),
-      invalidatesTags: [{ type: "Posts", id: "LIST" }],
+      invalidatesTags: ["Notes"],
     }),
   }),
 });
@@ -65,6 +83,8 @@ export const {
   useLoginUserMutation,
   useRegisterUserMutation,
   useFetchNotesQuery,
+  useFetchNoteQuery,
   useCreateNoteMutation,
-  useDeleteNoteMutation
+  useUpdateNoteMutation,
+  useDeleteNoteMutation,
 } = apiSlice;

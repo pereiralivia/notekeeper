@@ -1,28 +1,37 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { FaStickyNote } from 'react-icons/fa'
+import { FaPencilAlt } from "react-icons/fa";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation()
   const token = localStorage.getItem("token");
+
+  const isNotePath = location.pathname.includes('/notes')
 
   const handleClick = () => {
     localStorage.removeItem("token");
     navigate("/login");
   };
 
+  if(isNotePath){
+    return
+  }
+
   return (
     <header className="nav-container">
       <div className="nav-left">
-        <Link to="/">
-        <FaStickyNote />
-          Notes
-        </Link>
+        <Link to="/"><FaPencilAlt /> NoteKeeper</Link>
       </div>
       <div className="nav-right">
         {token ? (
-          <div>
-            <button className="logout-button" onClick={handleClick}>Logout</button>
+          <div className="dashboard-links">
+            <button className="create-note-button">New note
+            </button>
+            <button className="logout-button" onClick={handleClick}>
+              <span className="logout-button-name">Logout</span>
+            </button>
           </div>
         ) : (
           <div className="nav-right-links">

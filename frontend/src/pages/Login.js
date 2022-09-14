@@ -11,7 +11,8 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const [loginUser, { data = [], isLoading, error }] = useLoginUserMutation();
+  const [loginUser, { data = [], isLoading, isError, error }] =
+    useLoginUserMutation();
 
   const errorMessage = error?.data?.message;
 
@@ -34,43 +35,46 @@ const Login = () => {
     e.preventDefault();
 
     await loginUser(userCredentials);
+    setUserCredentials("");
   };
 
   return (
     <div className="login-container">
-      <div className="form-title">
-        <h2>Login</h2>
-        <p>Please enter your details</p>
+      <div className="login-inner-container">
+        <div className="form-title">
+          <h2>Login</h2>
+          <p>Please enter your details</p>
+        </div>
+        <form className="form-container" onSubmit={handleSubmit}>
+          <div className="form-item">
+            <label>Email</label>
+            <input
+              name="email"
+              type="email"
+              required
+              value={email}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-item">
+            <label>Password</label>
+            <input
+              name="password"
+              type="password"
+              required
+              value={password}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-item">
+            <button type="submit">Login</button>
+          </div>
+          <div className="form-bottom">
+            {isLoading ? <p>...loading</p> : ""}
+            {isError ? <p className="error-message">{errorMessage}</p> : ""}
+          </div>
+        </form>
       </div>
-      <form className="form-container" onSubmit={handleSubmit}>
-        <div className="form-item">
-          <label>Email</label>
-          <input
-            name="email"
-            type="email"
-            required
-            value={email}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-item">
-          <label>Password</label>
-          <input
-            name="password"
-            type="password"
-            required
-            value={password}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-item">
-          <button type="submit">Login</button>
-        </div>
-        <div className="form-bottom">
-          {isLoading ? <p>...loading</p> : ""}
-          <p className="error-message">{errorMessage}</p>
-        </div>
-      </form>
     </div>
   );
 };
