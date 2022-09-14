@@ -11,7 +11,7 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const [loginUser, { data = [], isLoading, isError, error }] =
+  const [loginUser, { data = [], isLoading, isSuccess, isError, error }] =
     useLoginUserMutation();
 
   const errorMessage = error?.data?.message;
@@ -35,7 +35,10 @@ const Login = () => {
     e.preventDefault();
 
     await loginUser(userCredentials);
-    setUserCredentials("");
+
+    if(isSuccess){
+      setUserCredentials("");
+    }
   };
 
   return (
