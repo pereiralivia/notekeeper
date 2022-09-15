@@ -6,9 +6,11 @@ import {
 } from "../features/apiSlice";
 
 const Footer = () => {
+  const navigate = useNavigate();
+
   const { data: notes = [], isLoading } = useFetchNotesQuery();
   const [createNote] = useCreateNoteMutation();
-  const navigate = useNavigate();
+
   const token = localStorage.getItem("token");
 
   const handleClick = async () => {

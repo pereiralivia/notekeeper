@@ -3,19 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { useLoginUserMutation } from "../features/apiSlice";
 
 const Login = () => {
-  const [userCredentials, setUserCredentials] = useState({
-    email: "",
-    password: "",
-  });
-  const { email, password } = userCredentials;
-
   const navigate = useNavigate();
 
   const [loginUser, { data = [], isLoading, isSuccess, isError, error }] =
     useLoginUserMutation();
+  const [userCredentials, setUserCredentials] = useState({
+    email: "",
+    password: "",
+  });
 
-  const errorMessage = error?.data?.message;
-
+  const { email, password } = userCredentials;
   const token = data.token;
 
   useEffect(() => {
@@ -36,7 +33,7 @@ const Login = () => {
 
     await loginUser(userCredentials);
 
-    if(isSuccess){
+    if (isSuccess) {
       setUserCredentials("");
     }
   };
@@ -74,7 +71,11 @@ const Login = () => {
           </div>
           <div className="form-bottom">
             {isLoading ? <p>...loading</p> : ""}
-            {isError ? <p className="error-message">{errorMessage}</p> : ""}
+            {isError ? (
+              <p className="error-message">{error?.data?.message}</p>
+            ) : (
+              ""
+            )}
           </div>
         </form>
       </div>

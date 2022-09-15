@@ -1,23 +1,27 @@
 import { useNavigate } from "react-router-dom";
-import { useFetchNotesQuery, useDeleteNoteMutation } from "../features/apiSlice";
-import { FaTrash } from 'react-icons/fa'
+import {
+  useFetchNotesQuery,
+  useDeleteNoteMutation,
+} from "../features/apiSlice";
+import { FaTrash } from "react-icons/fa";
 
 const NotesList = ({ keyword }) => {
-  const { data: notes = [], isLoading, isError, error } = useFetchNotesQuery();
-  const [deleteNote] = useDeleteNoteMutation()
   const navigate = useNavigate();
+
+  const { data: notes = [], isLoading, isError, error } = useFetchNotesQuery();
+  const [deleteNote] = useDeleteNoteMutation();
 
   const handleOpenNote = (noteId) => {
     navigate(`/notes/${noteId}`);
   };
 
   const handleDeleteNote = async (noteId) => {
-    await deleteNote(noteId)
-  }
+    await deleteNote(noteId);
+  };
 
   if (isError) {
-    console.log(error);
-    return <p>An error occured, please refresh the page.</p>;
+    console.log(error)
+    return <p>Ops, something went wrong, please refresh the page.</p>;
   }
 
   if (isLoading) {
@@ -47,7 +51,9 @@ const NotesList = ({ keyword }) => {
                   {note?.text?.content}
                 </p>
               </div>
-              <button onClick={() => handleDeleteNote(note._id)}><FaTrash /></button>
+              <button onClick={() => handleDeleteNote(note._id)}>
+                <FaTrash />
+              </button>
             </div>
           </li>
         ))}

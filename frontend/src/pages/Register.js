@@ -5,26 +5,23 @@ import { useRegisterUserMutation } from "../features/apiSlice";
 const Register = () => {
   const navigate = useNavigate();
 
+  const [registerUser, { data, isLoading, isError, error }] =
+    useRegisterUserMutation();
+
   const [userCredentials, setUserCredentials] = useState({
     email: "",
     password: "",
     repeatPassword: "",
   });
-
   const [passwordType, setPasswordType] = useState("password");
 
   const { email, password, repeatPassword } = userCredentials;
-
-  const [registerUser, { data, isLoading, isError, error }] =
-    useRegisterUserMutation();
-
   const token = data?.token;
-
   const errorMessage = error?.data?.message;
 
   useEffect(() => {
     if (!token) return;
-    localStorage.setItem("token", token);
+    localStorage.setItem("token", data?.token);
     navigate("/");
   });
 
@@ -45,7 +42,7 @@ const Register = () => {
     });
   };
 
-  const handleClickPasswordVisibility = () => {
+  const handleClick = () => {
     passwordType === "password"
       ? setPasswordType("text")
       : setPasswordType("password");
@@ -91,7 +88,7 @@ const Register = () => {
           </div>
 
           <div className="toggle-password-visibility">
-            <input type="checkbox" onClick={handleClickPasswordVisibility}/>
+            <input type="checkbox" onClick={handleClick}/>
             <p>Show password</p>
           </div>
 

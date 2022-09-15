@@ -5,15 +5,15 @@ import { useLocation } from "react-router-dom";
 import { useCreateNoteMutation } from "../features/apiSlice";
 
 const Header = () => {
-  const [createNote] = useCreateNoteMutation();
-
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [createNote] = useCreateNoteMutation();
+
   const token = localStorage.getItem("token");
 
-  const isNotePath = location.pathname.includes("/notes");
-  const isRegister = location.pathname.includes("/register");
+  const isNotePage = location.pathname.includes("/notes");
+  const isRegisterPage = location.pathname.includes("/register");
 
   const handleClick = () => {
     localStorage.removeItem("token");
@@ -31,7 +31,7 @@ const Header = () => {
     navigate(`/notes/${id}`);
   };
 
-  if (isNotePath) {
+  if (isNotePage) {
     return;
   }
 
@@ -57,7 +57,7 @@ const Header = () => {
           </div>
         ) : (
           <div className="nav-right-links">
-            <Link to="/login" className={isRegister ? "inactive-link" : ""}>Login</Link>
+            <Link to="/login" className={isRegisterPage ? "inactive-link" : ""}>Login</Link>
             <Link className="sign-up-button" to="/register">
               Sign up
             </Link>
