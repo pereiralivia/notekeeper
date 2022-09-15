@@ -1,5 +1,5 @@
 # NoteKeeper
-MERN stack application
+Notes app built with the MERN stack & Redux.
 
 ## Usage
 Rename the .envexample file to .env and add your MONGODB_URI.
