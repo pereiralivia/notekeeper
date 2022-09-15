@@ -8,8 +8,8 @@ const errorHandler = require("./middleware/errorHandler");
 
 mongoose
   .connect(process.env.MONGODB_URI)
-  .then(() => console.log(`Connected to MongoDB`))
-  .catch((error) => console.log(`Error connecting to MongoDB`, error));
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((error) => console.log("Error connecting to MongoDB", error));
 
 const app = express();
 
